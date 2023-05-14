@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Populate all the items in the item listing table
     this.itemsData = Object.values(this.dataService.getData());
   }
 
