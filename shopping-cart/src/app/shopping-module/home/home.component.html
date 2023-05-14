@@ -1,31 +1,53 @@
-<!-- <p>home works!</p> -->
+<!-- Parent component for listing -->
 <div class="wrapper">
+    <!-- Routing to the cart -->
     <button [routerLink]="'../cart'">Go To Cart</button>
     <br>
-    <br>
 
-    <label>Search</label>
-    <input type="text" id="search" [(ngModel)] = "searchText">
+    <!-- Search fields -->
+    <h1 class="centerAlign">Item Listing: </h1>
+    <div class="centerAlign">
+        <label>
+            <b>Search</b>
+        </label>
+        <input type="text" id="search" [(ngModel)] = "searchText">
+    </div>
 
+    <br><br>
+
+    <!-- Item Listing table -->
     <table class="itemTable" border="1px">
+        <!-- Heading Row -->
         <tr>
             <th>Sr.No.</th>
-            <th (click) = "sortTable('name', sortBool)">Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Quantity</th>
+            <th class = "cursorPointer" (click) = "sortTable('name', sortBool)">Name</th>
+            <th class = "cursorPointer" (click) = "sortTable('category', sortBool)">Category</th>
+            <th class = "cursorPointer" (click) = "sortTable('price', sortBool)">Unit Price ($)</th>
+            <th class = "cursorPointer" (click) = "sortTable('quantityAvailable', sortBool)">Quantity Available</th>
         </tr>
-        <tr *ngFor="let item of tableData | filter:searchText; let i=index;">
-        <td>{{ i+1 }}</td>
-        <td><a href="javascript:void(0)" (click) = getDetails(item.id)>{{ item.name }}</a></td>
-        <td>{{ item.category }}</td>
-        <td>{{ item.price }}</td>
-        <td>{{ item.quantityAvailable }}</td>
+        <!-- Values populated -->
+        <tr class="cursorPointer itemSelect"
+        (click) = setItemId(item.id) 
+        *ngFor="let item of itemsData | filter:searchText; let i=index;">
+            <!-- Sr. No.-->
+            <td class="centerAlign">{{ i+1 }}</td>
+            <!-- Name -->
+            <td>{{ item.name }}</td>
+            <!-- Category -->
+            <td>{{ item.category }}</td>
+            <!-- Unit Price -->
+            <td class="rightAlign">{{ item.price }}</td>
+            <!-- Available Quantity -->
+            <td>{{ item.quantityAvailable }}</td>
         </tr>
     </table>
 </div>
 
+<!-- Child component for item details -->
 <div class="child-wrapper">
+    <h1 class="centerAlign">Item Detail:</h1>
+    <br><br>
+    <!-- Child component selector -->
     <app-item-detail 
     *ngIf="this.itemDetailId!=''" 
     [itemDetailId] = itemDetailId

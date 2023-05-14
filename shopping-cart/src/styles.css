@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Text Alignment Styles */
+.centerAlign{
+    text-align: center;
+}
+.rightAlign{
+    text-align: right;
+}
+.leftAlign{
+    text-align: left;
+}
+
+/* Cursor modification */
+.cursorPointer{
+    cursor: pointer;
+}
+input{
+    box-sizing: border-box;
+} 

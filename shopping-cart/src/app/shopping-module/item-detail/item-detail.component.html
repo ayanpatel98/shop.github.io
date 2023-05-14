@@ -1,29 +1,46 @@
+<!-- Child component -->
 <div class="child-comp">
-    <table border="1px">
+    <!-- Item Details Table -->
+    <table class="itemDetailTable" border="1px">
         <tr>
+            <!-- Item name -->
             <td>Name:</td>
             <td>{{itemDetail.name}}</td>
         </tr>
         <tr>
+            <!-- Item category -->
             <td>Category:</td>
             <td>{{itemDetail.category}}</td>
         </tr>
         <tr>
+            <!-- Quantity available in stock -->
             <td>Quantity Available:</td>
             <td>{{itemDetail.quantityAvailable}}</td>
         </tr>
         <tr>
-            <td>Price:</td>
+            <!-- Item price per unit -->
+            <td>Unit Price ($):</td>
             <td>{{itemDetail.price}}</td>
         </tr>
         <tr>
+            <!-- Item description -->
             <td>Description:</td>
-            <td>Lorem Ipsum</td>
+            <td>{{itemDetail.description}}</td>
         </tr>
     </table>
     <br>
     <div>
-        <input id="qty" type="number" value="0" min="0" [max]="itemDetail.quantityAvailable" required>
-        <button (click)="addToCart(this.itemDetail)">Add to Cart</button>
+        <!-- Total Price calculation: Qty. selected * Item price -->
+        <div><b>Total Price ($):</b></div>
+        <div>{{selectedQty*itemDetail.price}}</div>
+        <br>
+
+        <!-- Quantity selection provision -->
+        <div><b>Select Quantity:</b></div>
+        <input id="qty" type="number" 
+        [value]="selectedQty" [(ngModel)] = "selectedQty"
+        min="1" [max]="itemDetail.quantityAvailable"
+        required>
+        <button id="addButton" (click)="addToCart(this.itemDetail)">Add to Cart</button>
     </div>
 </div>

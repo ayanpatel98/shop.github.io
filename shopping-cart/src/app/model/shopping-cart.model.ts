@@ -1,3 +1,4 @@
+// Shopping Item Record
 export interface ShoppingRecord {
     id: string;
     name: string;
@@ -6,4 +7,5 @@ export interface ShoppingRecord {
     quantityAvailable: number;
     orderQty: number;
     totalQuantity: number;
+    description: string;
 }

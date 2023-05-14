@@ -8,35 +8,62 @@ import { DataService } from 'src/app/service/data-service.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  tableData: ShoppingRecord[] = [];
+  // Declaration and Initialization
+  // All Items Data array : interface ShoppingRecord
+  itemsData: ShoppingRecord[] = [];
+  // Sorting Reverser
   sortBool: boolean = false;
+  // Item Id
   itemDetailId: string = '';
+  // Search field value
   searchText: string = '';
 
-  constructor(private dataService: DataService) { }
+  constructor(
+    private dataService: DataService // Data service
+  ) { }
 
   ngOnInit(): void {
-    this.tableData = Object.values(this.dataService.getData());
+    this.itemsData = Object.values(this.dataService.getData());
   }
 
-  getDetails(itemId: string){
+  /**
+ * Sets the itemDetailsId for passing it to the child ItemDetail component
+ * for fetching the item details based on it
+ *
+ * @param {string} itemId Item id string
+ * @return None
+ */
+  setItemId(itemId: string) {
     this.itemDetailId = itemId;
   }
 
-  updateStock(event: boolean){
-    this.tableData = Object.values(this.dataService.getData());
+  /**
+ * Updates the items after receiving the event from the event emitter from the child component
+ *
+ * @param {boolean} event boolean event
+ * @return None
+ */
+  updateStock(event: boolean) {
+    this.itemsData = Object.values(this.dataService.getData());
   }
 
-  sortTable(colName: string, sortBoolVal: boolean){
-    if (sortBoolVal == true){
-        this.tableData.sort((a, b) => a[colName as keyof ShoppingRecord] < b[colName as keyof ShoppingRecord] ? 1 : a[colName as keyof ShoppingRecord] > b[colName as keyof ShoppingRecord] ? -1 : 0)
-        this.sortBool = !this.sortBool
+  /**
+ * Updates the items in a particular sorted order based on the sortBoolVal
+ * Sorts in ascending and descending order
+ *
+ * @param {string} colName column Name string
+ * @param {boolean} sortBoolVal boolean sorting reverser
+ * @return None
+ */
+  sortTable(colName: string, sortBoolVal: boolean) {
+    if (sortBoolVal == true) {
+      this.itemsData.sort((a, b) => a[colName as keyof ShoppingRecord] < b[colName as keyof ShoppingRecord] ? 1 : a[colName as keyof ShoppingRecord] > b[colName as keyof ShoppingRecord] ? -1 : 0)
+      this.sortBool = !this.sortBool
     }
-    else{
-        this.tableData.sort((a, b) => a[colName as keyof ShoppingRecord] > b[colName as keyof ShoppingRecord] ? 1 : a[colName as keyof ShoppingRecord] < b[colName as keyof ShoppingRecord] ? -1 : 0)
-        this.sortBool = !this.sortBool
+    else {
+      this.itemsData.sort((a, b) => a[colName as keyof ShoppingRecord] > b[colName as keyof ShoppingRecord] ? 1 : a[colName as keyof ShoppingRecord] < b[colName as keyof ShoppingRecord] ? -1 : 0)
+      this.sortBool = !this.sortBool
     }
-    
+
   }
 }

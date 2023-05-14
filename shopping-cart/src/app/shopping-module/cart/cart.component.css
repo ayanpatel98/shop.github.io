@@ -1,8 +1,30 @@
+/* Cart component wrapper */
 .cart-wrapper{
     border: 1px solid black;
-    width:100%;
-    height:600px;
+    width:98.5%;
+    height: 100%;
     padding: 10px;
     display: inline-block;
-    float: left;
+}
+
+/* Cart Items table styling */
+.itemTable{
+    width: 60%;
+}
+
+.itemTable td{
+    padding: 2px 3px;
+}
+
+.itemTable td:nth-of-type(2){
+    width: 35%;
+}
+
+/* Delete button  */
+#deleteButton{
+    margin-left: 5px;
+}
+
+input{
+    width: 100%;
 }

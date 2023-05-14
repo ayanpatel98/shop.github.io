@@ -1,31 +1,42 @@
+<!-- Cart Component -->
 <div class="cart-wrapper">
+    <!-- Route to Home page button -->
     <button [routerLink]="'../home'">Go To Home</button>
     <br>
-    <br>
+    
+    <!-- Title -->
+    <h1 class="centerAlign">{{title}}</h1>
 
-    <table *ngIf="tableData && tableData.length>0" class="itemTable" border="1px">
+    <!-- Cart Item Table -->
+    <table *ngIf="cartData && cartData.length>0" class="itemTable" border="1px">
         <tr>
             <th>Sr.No.</th>
             <th>Name</th>
             <th>Category</th>
-            <th>Price</th>
+            <th>Order Total ($)</th>
             <th>Order Quantity</th>
             <th>Action</th>
         </tr>
-        <tr *ngFor="let item of tableData; let i=index;">
-            <td>{{ i+1 }}</td>
+        <tr *ngFor="let item of cartData; let i=index;">
+            <!-- Sr.No. -->
+            <td class="centerAlign">{{ i+1 }}</td>
+            <!-- Name -->
             <td>{{ item.name }}</td>
+            <!-- Category -->
             <td>{{ item.category }}</td>
-            <td>{{ item.price }}</td>
+            <!-- Order Total ($) -->
+            <td class="rightAlign">{{ item.price * item.orderQty }}</td>
+            <!-- Order Quantity -->
             <td>
                 <input type="number" 
                 [value] = "item.orderQty" [(ngModel)]="item.orderQty"
                 [disabled]="!editable[i]">
             </td>
-            <td>
+            <!-- Action -->
+            <td class="centerAlign">
                 <button *ngIf="!editable[i]" (click) = "editField(i)">Edit</button>
                 <button *ngIf="editable[i]" (click) = "updateItem(item, i)">Update</button>
-                <button (click) = "deleteItem(item, i)">Delete</button>
+                <button id = "deleteButton" (click) = "deleteItem(item, i)">Delete</button>
             </td>
         </tr>
     </table>

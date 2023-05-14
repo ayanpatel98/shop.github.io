@@ -1,17 +1,51 @@
+/* Paret home component structure */
 .wrapper{
     border: 1px solid black;
     width:50%;
-    height:600px;
+    height:100%;
     padding: 10px;
     display: inline-block;
     float: left;
 }
 
+/* Item-detail Child component structure */
 .child-wrapper{
     border: 1px solid black;
     width: 45%;
-    height:600px;
+    height: 715px;
     padding: 10px;
     display: inline-block;
     float: right;
+}
+
+/* Search input field */
+#search{
+    margin-left: 10px;
+    width: 30%;
+}
+
+/* Item Listing table styling */
+.itemTable{
+    width: 100%;
+}
+
+.itemTable td{
+    padding: 2px 5px;
+}
+
+.itemTable th:nth-of-type(2){
+    width: 60%;
+}
+
+.itemTable th:nth-of-type(3){
+    width: 15%;
+}
+
+.itemTable th:nth-of-type(4){
+    width: 10%;
+}
+
+/* Row hover effect */
+.itemSelect:hover{
+    background-color: lightblue;
 }
