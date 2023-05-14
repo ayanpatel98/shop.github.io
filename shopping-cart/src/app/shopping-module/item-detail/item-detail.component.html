@@ -1,0 +1,29 @@
+<div class="child-comp">
+    <table border="1px">
+        <tr>
+            <td>Name:</td>
+            <td>{{itemDetail.name}}</td>
+        </tr>
+        <tr>
+            <td>Category:</td>
+            <td>{{itemDetail.category}}</td>
+        </tr>
+        <tr>
+            <td>Quantity Available:</td>
+            <td>{{itemDetail.quantityAvailable}}</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td>{{itemDetail.price}}</td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td>Lorem Ipsum</td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <input id="qty" type="number" value="0" min="0" [max]="itemDetail.quantityAvailable" required>
+        <button (click)="addToCart(this.itemDetail)">Add to Cart</button>
+    </div>
+</div>

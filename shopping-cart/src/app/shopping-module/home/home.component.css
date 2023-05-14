@@ -1,0 +1,17 @@
+.wrapper{
+    border: 1px solid black;
+    width:50%;
+    height:600px;
+    padding: 10px;
+    display: inline-block;
+    float: left;
+}
+
+.child-wrapper{
+    border: 1px solid black;
+    width: 45%;
+    height:600px;
+    padding: 10px;
+    display: inline-block;
+    float: right;
+}
