@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { ShoppingRecord } from 'src/app/model/shopping-cart.model';
 import { DataService } from 'src/app/service/data-service.service';
-import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +9,9 @@ import { SharedService } from 'src/app/service/shared.service';
 })
 export class HomeComponent implements OnInit {
 
-  tableData: any[] = [];
-  itemDetailId: any;
+  tableData: ShoppingRecord[] = [];
   sortBool: boolean = false;
+  itemDetailId: string = '';
   searchText: string = '';
 
   constructor(private dataService: DataService) { }
@@ -21,7 +20,7 @@ export class HomeComponent implements OnInit {
     this.tableData = Object.values(this.dataService.getData());
   }
 
-  getDetails(itemId: any){
+  getDetails(itemId: string){
     this.itemDetailId = itemId;
   }
 
@@ -31,11 +30,11 @@ export class HomeComponent implements OnInit {
 
   sortTable(colName: string, sortBoolVal: boolean){
     if (sortBoolVal == true){
-        this.tableData.sort((a, b) => a[colName] < b[colName] ? 1 : a[colName] > b[colName] ? -1 : 0)
+        this.tableData.sort((a, b) => a[colName as keyof ShoppingRecord] < b[colName as keyof ShoppingRecord] ? 1 : a[colName as keyof ShoppingRecord] > b[colName as keyof ShoppingRecord] ? -1 : 0)
         this.sortBool = !this.sortBool
     }
     else{
-        this.tableData.sort((a, b) => a[colName] > b[colName] ? 1 : a[colName] < b[colName] ? -1 : 0)
+        this.tableData.sort((a, b) => a[colName as keyof ShoppingRecord] > b[colName as keyof ShoppingRecord] ? 1 : a[colName as keyof ShoppingRecord] < b[colName as keyof ShoppingRecord] ? -1 : 0)
         this.sortBool = !this.sortBool
     }
     

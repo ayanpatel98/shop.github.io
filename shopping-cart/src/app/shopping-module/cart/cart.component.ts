@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ShoppingRecord } from 'src/app/model/shopping-cart.model';
 import { DataService } from 'src/app/service/data-service.service';
-import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,7 +9,7 @@ import { SharedService } from 'src/app/service/shared.service';
 })
 export class CartComponent implements OnInit {
 
-  tableData: any[] = [];
+  tableData: ShoppingRecord[] = [];
   editable: boolean[] = [];
   
   constructor(private dataService: DataService) { }
@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
     this.editable[i] = true;
   }
 
-  updateItem(item: any, i: number){
+  updateItem(item: ShoppingRecord, i: number){
     if(item['orderQty']>item['totalQuantity']){
       window.alert("Stock not available for the quantity entered.");
       return;
@@ -32,7 +32,7 @@ export class CartComponent implements OnInit {
     this.editable[i] = false;
   }
 
-  deleteItem(item: any, idx: number){
+  deleteItem(item: ShoppingRecord, idx: number){
     this.dataService.deleteCartItem(item['id']);
     // this.tableData = Object.values(this.dataService.getCartItems())
     this.tableData.splice(idx, 1);

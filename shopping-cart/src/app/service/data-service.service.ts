@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { ShoppingRecord } from '../model/shopping-cart.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private shoppingData : {[id: string] : any} = {
+  private shoppingData : {[id: string] : ShoppingRecord} = {
     'a1':{id: 'a1', name: 'Item 1', category: 'Category 1', price: 10, quantityAvailable: 5, orderQty: 0, totalQuantity: 5 },
     'b1':{id: 'b1', name: 'Item 2', category: 'Category 2', price: 10, quantityAvailable: 5, orderQty: 0, totalQuantity: 5 },
     'c1':{id: 'c1', name: 'Item 3', category: 'Category 3', price: 10, quantityAvailable: 5, orderQty: 0, totalQuantity: 5 },
@@ -13,11 +14,11 @@ export class DataService {
     'e1':{id: 'e1', name: 'Item 5', category: 'Category 5', price: 10, quantityAvailable: 5, orderQty: 0, totalQuantity: 5 },
   }
 
-  private cartItems : {[id: string] : any} = {}
+  private cartItems : {[id: string] : ShoppingRecord} = {}
 
   constructor() {}
 
-  setData(id: string, data: Object){
+  setData(id: string, data: ShoppingRecord){
     this.shoppingData[id] = data;
   }
 
@@ -29,7 +30,7 @@ export class DataService {
     return this.shoppingData[id];
   }
 
-  addCartItems(id: string, data: any){
+  addCartItems(id: string, data: ShoppingRecord){
     // if(this.cartItems[id]==undefined){
       this.cartItems[id] = data;
 
@@ -38,9 +39,6 @@ export class DataService {
     // else{
     //   this.cartItems[id]["quantityAvailable"] = this.cartItems[id]["totalQuantity"] - data["quantityAvailable"];
     // }
-
-    console.log(this.cartItems);
-    console.log(this.shoppingData);
     
   }
 

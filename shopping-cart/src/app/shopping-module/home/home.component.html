@@ -27,7 +27,7 @@
 
 <div class="child-wrapper">
     <app-item-detail 
-    *ngIf="this.itemDetailId!=null || this.itemDetailId!=undefined" 
+    *ngIf="this.itemDetailId!=''" 
     [itemDetailId] = itemDetailId
     (updateStock)="updateStock($event)">
     </app-item-detail>
